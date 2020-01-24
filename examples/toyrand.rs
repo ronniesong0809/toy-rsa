@@ -3,16 +3,16 @@ use toy_rsa::*;
 
 pub fn main() {
     // Private Key
-    // let (p, q) = genkey();
-    let p = 0xed23e6cd;
-    let q = 0xf050a04d;
+    let (p, q) = genkey();
+    // let p = 0xed23e6cd;
+    // let q = 0xf050a04d;
     print!("\np: {}, q: {}\n", p, q);
 
     let d: u64 = p as u64 * q as u64;
-    print!("d: {}\n", d);
+    print!("public: {}\n", d);
 
     // Message
-    let msg: u32 = 12345;
+    let msg = 12345;
 
     let encrypted = encrypt(d, msg);
     print!("encrypted: {}\n", encrypted);

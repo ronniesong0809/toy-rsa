@@ -36,6 +36,7 @@ pub fn genkey() -> (u32, u32) {
             done = true;
         }
     }
+    // print!("p: {}, q: {}", p, q);
     (p.try_into().unwrap(), q.try_into().unwrap())
 }
 
@@ -60,10 +61,10 @@ pub fn decrypt(key: (u32, u32), msg: u64) -> u32 {
     let p: u64 = p.try_into().unwrap();
     let q: u64 = q.try_into().unwrap();
     let n = p * q;
-    
-    let d = modinverse(lambda(p, q), EXP);
+
+    let d = modinverse(EXP, lambda(p, q));
     let result = modexp(msg, d, n);
-    print!("p: {}, q: {}, n: {}, result: {}\n", p, q, n, result);
+    // print!("p: {}, q: {}, n: {}, result: {}\n", p, q, n, result);
 
     return result as u32;
 }
