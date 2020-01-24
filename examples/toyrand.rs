@@ -3,29 +3,20 @@ use toy_rsa::*;
 
 pub fn main() {
     // Private Key
-    let p: u32 = 0xed23e6cd;
-    let q: u32 = 0xf050a04d;
+    // let (p, q) = genkey();
+    let p = 0xed23e6cd;
+    let q = 0xf050a04d;
+    print!("\np: {}, q: {}\n", p, q);
 
-    // Public Key
-    let sum: u64 = 0xde9c5816141c8ba9;
+    let d: u64 = p as u64 * q as u64;
+    print!("d: {}\n", d);
 
     // Message
     let msg: u32 = 12345;
-    // Message
-    let msg2: u64 = 12345;
 
-    // Encrypted:
-    let _encrypted: u64 = 0x164e44b86776d497;
+    let encrypted = encrypt(d, msg);
+    print!("encrypted: {}\n", encrypted);
 
-    // Decrypted
-    let _decrypted: u32 = 12345;
-
-    let encoding = encrypt(sum, msg);
-    print!("encoding to {}\n", encoding);
-
-    let decoding = decrypt((p, q), msg2);
-    print!("decoding to {}\n", decoding);
-
-    let (y, z) = genkey();
-    print!("generating to {}, {}\n", y, z);
+    let decrypted = decrypt((p, q), encrypted);
+    print!("decrypted: {}\n", decrypted);
 }
