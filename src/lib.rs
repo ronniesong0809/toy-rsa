@@ -29,13 +29,14 @@ pub fn genkey() -> (u32, u32) {
     let mut done = false;
 
     while !done {
-        p = u64::from(rsa_prime());
-        q = u64::from(rsa_prime());
+        p = rsa_prime().try_into().unwrap();
+        q = rsa_prime().try_into().unwrap();
 
         if EXP < lambda(p, q) && gcd(EXP, lambda(p, q)) == 1 {
             done = true;
         }
     }
+    
     // print!("p: {}, q: {}", p, q);
     (p.try_into().unwrap(), q.try_into().unwrap())
 }
@@ -66,5 +67,5 @@ pub fn decrypt(key: (u32, u32), msg: u64) -> u32 {
     let result = modexp(msg, d, n);
     // print!("p: {}, q: {}, n: {}, result: {}\n", p, q, n, result);
 
-    return result as u32;
+    result.try_into().unwrap()
 }
