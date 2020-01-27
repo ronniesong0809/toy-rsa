@@ -24,19 +24,15 @@ genkey:
     until E < 𝜆(p, q) and gcd(E, 𝜆) = 1
     return p, q */
 pub fn genkey() -> (u32, u32) {
-    let mut p = 0;
-    let mut q = 0;
-    let mut done = false;
+    let mut p = rsa_prime().try_into().unwrap();
+    let mut q = rsa_prime().try_into().unwrap();
 
-    while !done {
+    while EXP > lambda(p, q) && gcd(EXP, lambda(p, q)) != 1 {
+        print!("hit!");
         p = rsa_prime().try_into().unwrap();
         q = rsa_prime().try_into().unwrap();
-
-        if EXP < lambda(p, q) && gcd(EXP, lambda(p, q)) == 1 {
-            done = true;
-        }
     }
-    
+
     // print!("p: {}, q: {}", p, q);
     (p.try_into().unwrap(), q.try_into().unwrap())
 }
