@@ -6,22 +6,37 @@ Copyright (c) 2020 Ronnie Song
 
 This is a Rust based rsa library crate that provides RSA key generation, encryption and decryption.
 
-<br>
+```
+generator -> pair of private keys
+```
+```
+message + public key -> ciphertext 
+```
+```
+ciphertext + private keys -> message
+```
 
-*keygen()* usage:
+## Usage
+
+Key Generation:
 ```
 let (p, q) = keygen();
 ```
+Generate a pair of primes in the range 2^30 ~2^31.
+<br>
 
-*encrypt()* usage:
+Encryption:
 ```
 let secret = encrypt(key, msg);
 ```
+Encrypt the `msg` using the RSA public key return the ciphertext.
+<br>
 
-*decrypt()* usage:
+Decryption:
 ```
 msg = decrypt((p, q), secret);
 ```
+Decrypt the `ciphertext` using the RSA pirvate key return the msg.
 
 ## Run Example
 
@@ -39,7 +54,7 @@ public: 15167718796344762103
 encrypted: 10620660062450240214
 decrypted: 12345
 ```
-
+Everything went well! The input message and output message remain the same after been encoded and decoded.
 
 ## Test
 To test the library crate, type the command below:
@@ -65,9 +80,9 @@ test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 
 All tests passed with no issues.
 
-The tests are placed in tests/rand.rs file that uses std *assert_eq!()*, *assert_ne!()*, and extern [`more_assert`]() *assert_gt!()* to test equality of the actual result and expected result of the *keygen()*, *encrypt()* and *decrypt()* functions in that file.
+The tests are placed in tests/rand.rs file that uses std *assert_eq!()*, *assert_ne!()*, and extern [`more_assert`](https://docs.rs/more-asserts/0.2.1/more_asserts/) *assert_gt!()* to test equality of the actual result and expected result of the *keygen()*, *encrypt()* and *decrypt()* functions in that file.
 
-[![Build Status](https://travis-ci.com/ronniesong0809/toy-rsa.svg?token=ysuqwpSTd1nLYmpB7CY5&branch=examples)](https://travis-ci.com/ronniesong0809/toy-rsa)
+Travis CI is running to do the automated testing. [![Build Status](https://travis-ci.com/ronniesong0809/toy-rsa.svg?token=ysuqwpSTd1nLYmpB7CY5&branch=examples)](https://travis-ci.com/ronniesong0809/toy-rsa)
 
 ## License
 
