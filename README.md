@@ -18,21 +18,23 @@ ciphertext + private keys -> message
 
 ## Usage
 
-Key Generation:
+#### Key Generation:
 ```
 let (p, q) = keygen();
 ```
 Generate a pair of primes in the range 2^30 ~2^31.
+
 <br>
 
-Encryption:
+#### Encryption:
 ```
 let secret = encrypt(key, msg);
 ```
 Encrypt the `msg` using the RSA public key return the ciphertext.
+
 <br>
 
-Decryption:
+#### Decryption:
 ```
 msg = decrypt((p, q), secret);
 ```
