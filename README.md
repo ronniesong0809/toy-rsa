@@ -24,11 +24,15 @@ let (p, q) = keygen();
 ```
 Generate a pair of primes in the range 2^30 ~2^31.
 
+<br>
+
 #### Encryption:
 ```
 let secret = encrypt(key, msg);
 ```
 Encrypt the `msg` using the RSA public key return the ciphertext.
+
+<br>
 
 #### Decryption:
 ```
@@ -36,8 +40,10 @@ msg = decrypt((p, q), secret);
 ```
 Decrypt the `ciphertext` using the RSA pirvate key return the msg.
 
-## Run Example
+<br>
 
+## Run Example
+To run the example program, type the command below:
 ```
 cargo run --example toyrand
 ```
